@@ -20,6 +20,10 @@ type App() =
             let view = MainView()
             desktop.MainWindow <- view
             ViewModels.MainViewModel.vm.Start(view)
+        | :? ISingleViewApplicationLifetime as singleViewLifetime ->
+            let view = MainView()
+            singleViewLifetime.MainWindow <- view
+            ViewModels.MainViewModel.vm.Start(view)
         | _ -> 
             // leave this here for design view re-renders
             ()
